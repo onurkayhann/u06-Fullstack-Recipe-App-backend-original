@@ -9,6 +9,11 @@ class RecipeList extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'user_id'
+    ];
+
     public function user()
     {
         $this->belongsTo(User::class);
