@@ -15,11 +15,15 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
+            $table->integer('recipe_id');
+            $table->string('title');
+            $table->foreignId('recipe_lists_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
 
     /**
+     *
      * Reverse the migrations.
      *
      * @return void
