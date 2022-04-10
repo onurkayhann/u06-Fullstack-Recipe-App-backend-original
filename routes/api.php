@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecipesController;
 use App\Http\Controllers\RecipelistController;
+use App\Http\Controllers\API\FoodieController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+
+Route::prefix('foodie')->group(function () {
+    Route::get('/', [FoodieController::class, 'getAll']);
+    Route::post('/', [FoodieController::class, 'create']);
+    Route::delete('/{id}', [FoodieController::class, 'delete']);
+    Route::get('/{id}', [FoodieController::class, 'get']);
+    Route::put('/{id}', [FoodieController::class, 'update']);
+});
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('recipes/{id}', [RecipesController::class, 'recipes']);
