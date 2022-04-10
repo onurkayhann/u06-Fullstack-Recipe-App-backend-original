@@ -18,6 +18,7 @@ class CreateFoodieTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('cuisine');
+            $table->timestamps();
         });
     }
 
