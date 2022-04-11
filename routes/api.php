@@ -28,6 +28,7 @@ Route::prefix('foodie')->group(function () {
     Route::delete('/{id}', [FoodieController::class, 'delete']);
     Route::get('/{id}', [FoodieController::class, 'get']);
     Route::put('/{id}', [FoodieController::class, 'update']);
+    Route::get('/{id}', [FoodieController::class, 'search']);
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {

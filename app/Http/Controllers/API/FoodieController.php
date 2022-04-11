@@ -56,4 +56,10 @@ class FoodieController extends Controller
             'success' => true
         ], 200);
     }
+
+    public function search(Request $request, $id)
+    {
+        $data = Foodie::where('cuisine', 'LIKE', '%'.$id.'%')->get();
+        return response()->json($data ,200);
+    }
 }
