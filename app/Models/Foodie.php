@@ -14,6 +14,7 @@ class Foodie extends Model
     protected $fillable = [
         'name',
         'description',
-        'cuisine'
+        'cuisine',
+        'userId'
     ];
 }
