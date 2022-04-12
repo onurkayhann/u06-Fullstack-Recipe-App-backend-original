@@ -21,14 +21,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
-
+Route::get('watchlist/{id}', [FoodieController::class, 'GetWatchList']);
 Route::prefix('foodie')->group(function () {
     Route::get('/', [FoodieController::class, 'getAll']);
     Route::post('/', [FoodieController::class, 'create']);
     Route::delete('/{id}', [FoodieController::class, 'delete']);
     Route::get('/{id}', [FoodieController::class, 'get']);
     Route::put('/{id}', [FoodieController::class, 'update']);
-    Route::get('/{id}', [FoodieController::class, 'search']);
+    Route::get('/search/{query}/{category}', [FoodieController::class, 'search']);
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {

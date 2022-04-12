@@ -20,6 +20,7 @@ class FoodieController extends Controller
         $data['name'] = $request['name'];
         $data['description'] = $request['description'];
         $data['cuisine'] = $request['cuisine'];
+        $data['userId'] = $request['userId'];
 
         Foodie::create($data);
         return response()->json([
@@ -57,9 +58,25 @@ class FoodieController extends Controller
         ], 200);
     }
 
-    public function search(Request $request, $id)
+    public function search(Request $request, $query, $category)
     {
-        $data = Foodie::where('cuisine', 'LIKE', '%'.$id.'%')->get();
-        return response()->json($data ,200);
+        if ($query == '' || $query == null) {
+            $data = Foodie::all();
+            return response()->json($data, 200);
+        } else {
+            if ($category == '' || $category == null) {
+                $data = Foodie::where('name', 'LIKE', '%' . $query . '%')->get();
+                return response()->json($data, 200);
+            } else {
+                $data = Foodie::where([['name', 'LIKE', '%' . $query . '%'], ['cuisine', '=', $category]])->get();
+                return response()->json($data, 200);
+            }
+        }
+    }
+
+    public function GetWatchList($id)
+    {
+        $data = Foodie::where('userId', '=', $id)->get();
+        return response()->json($data->toArray(), 200);
     }
 }
