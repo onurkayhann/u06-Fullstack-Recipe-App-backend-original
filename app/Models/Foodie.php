@@ -12,6 +12,7 @@ class Foodie extends Model
     protected $table = 'foodie';
 
     protected $fillable = [
+        'recipeId',
         'name',
         'description',
         'cuisine',

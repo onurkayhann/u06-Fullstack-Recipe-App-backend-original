@@ -17,6 +17,7 @@ class FoodieController extends Controller
 
     public function create(Request $request)
     {
+        $data['recipeId'] = $request['id'];
         $data['name'] = $request['name'];
         $data['description'] = $request['description'];
         $data['cuisine'] = $request['cuisine'];
